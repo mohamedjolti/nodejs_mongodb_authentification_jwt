@@ -2,7 +2,21 @@ const router =require("express").Router();
 const User=require("../models/User")
 
 
+const checkIfEmailExist=(e)=>{
+    const oldUser=User.findOne({email:e});
+    if(oldUser){
+        return true
+    }else{
+        return false;
+    }
+}
+
 router.post("/register", (req,res)=>{
+
+
+     if(checkIfEmailExist(req.body.email)){
+         return res.send("email alredy exist")
+     }    
   
     const user={
         name:req.body.name,
