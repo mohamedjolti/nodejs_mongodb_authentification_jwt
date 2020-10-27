@@ -9,7 +9,7 @@ module.exports=function (req,res,next){
        req.user=virified
        next()
     }catch(err){
-      res.status("404").send("token dined")
+      res.status("404").send("token dined") 
 
     }
 }
