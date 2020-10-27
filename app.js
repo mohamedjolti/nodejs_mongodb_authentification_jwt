@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 
 const AuthRoutes=require("./routes/auth");
 
+const SecretRoutes=require("./routes/secret");
 mongoose.connect("mongodb://localhost:27017/Tasks",{useNewUrlParser:true});
 
 
@@ -21,7 +22,7 @@ app.get("/",(req,res)=>{
 
 
 app.use("/api/user",AuthRoutes);
-
+app.use("/api/secret",SecretRoutes);
 
 app.listen(3000,()=>{
     console.log("Server is working")

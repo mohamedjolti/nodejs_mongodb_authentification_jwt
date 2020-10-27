@@ -1,7 +1,7 @@
 const router =require("express").Router();
 const User=require("../models/User")
 const bcrypt=require("bcryptjs")
-
+const jwt=require("jsonwebtoken")
 
 router.post("/register",async (req,res)=>{
 
@@ -43,8 +43,10 @@ router.post("/login", async (req,res)=>{
       if(!passwod){
           res.send("password not valid");
       }
-
-      return res.send("welcome")
+      //create a token
+      const token=jwt.sign({_id:user._id},"tokensecret")
+      
+      return res.header("auth-token",token).send(token)
 
 
 
